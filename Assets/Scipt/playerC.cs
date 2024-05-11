@@ -19,6 +19,7 @@ public class playerC : MonoBehaviour
     public float PlayHp = 100f;
     public Image PlayHpIMG;
     public float PlayerAtkTime;
+    public float op;
     static public bool Player_isAttk = false;
 
     private Vector3 moveDirection;
