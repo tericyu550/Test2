@@ -53,7 +53,8 @@ public class NPC_AI : MonoBehaviour
             Destroy(gameObject, 5);
         }
         NPC_AtkTime = NPC01_ani.GetFloat("NPC_AtkTtime");
-        NPC_isAtk = NPC_AtkTime > 0.002 ? true : false;
+        NPC_isAtk = NPC01_ani.GetFloat("NPC_AtkTtime") > 0.006 ? true : false;
+        
     }
 
 

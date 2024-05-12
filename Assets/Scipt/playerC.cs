@@ -30,6 +30,8 @@ public class playerC : MonoBehaviour
     }
     private void Update()
     {
+        PlayHpIMG.fillAmount =PlayHp* 0.01f;
+
         if (controller.isGrounded)
         {
             float tunX = Input.GetAxis("Horizontal");
@@ -79,7 +81,7 @@ public class playerC : MonoBehaviour
            
         }
         PlayerAtkTime = anim.GetFloat("playerAttacktime");
-        Player_isAttk = PlayerAtkTime > 0.002f ? true : false;
+        Player_isAttk = PlayerAtkTime > 0.02f ? true : false;
         moveDirection.y -= gravity * Time.deltaTime;
             // 移動角色
         controller.Move(moveDirection * Time.deltaTime);
@@ -89,7 +91,11 @@ public class playerC : MonoBehaviour
         }
         else
             anim.SetBool("Player_attack", false);
-
+        if (PlayHp <= 0)
+        { 
+        
+        
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -135,9 +141,11 @@ public class playerC : MonoBehaviour
             knife.SetActive(true);
             Destroy(other.gameObject);
         }
-        //if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true)
-        //{ 
-        //}
+        if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
+        {
+            PlayHp -= 10f;
+            print(PlayHp);
+        }
      
     }
 }

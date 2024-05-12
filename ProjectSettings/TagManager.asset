@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - COIN
   - weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX

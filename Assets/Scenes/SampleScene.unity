@@ -367,10 +367,10 @@ RectTransform:
   m_Father: {fileID: 1392239005}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2, y: 0.25}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470718551
 MonoBehaviour:
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -862,6 +862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'NPC_Idle '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24eb3c57132ba5f4c85802721891b884, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 24eb3c57132ba5f4c85802721891b884, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -967,7 +971,7 @@ RectTransform:
   m_GameObject: {fileID: 1392239001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.081}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
   m_Children:
   - {fileID: 470718550}
   m_Father: {fileID: 2047109053}
@@ -976,7 +980,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 2, y: 0.25}
+  m_SizeDelta: {x: 100, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1448664159
 GameObject:
@@ -1010,10 +1014,10 @@ RectTransform:
   m_Father: {fileID: 470718550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2, y: 0.25}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1448664161
 MonoBehaviour:
@@ -1035,11 +1039,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 6a291f462ec37b34e9c9f1e5938a2d39, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1146,7 +1150,7 @@ GameObject:
   - component: {fileID: 1509127607}
   m_Layer: 0
   m_Name: HandTigg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1176,8 +1180,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.09682082, y: 0.13477622, z: 0.13145263}
+  m_Center: {x: 0.008410411, y: 0.017388118, z: -0.022660242}
 --- !u!1 &1600218715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,9 +1369,10 @@ GameObject:
   - component: {fileID: 1797454852}
   - component: {fileID: 1797454851}
   - component: {fileID: 1797454855}
+  - component: {fileID: 1797454856}
   m_Layer: 0
   m_Name: NPC1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1406,7 +1411,7 @@ MonoBehaviour:
   TargetObj: {fileID: 2047109051}
   NPC01_ani: {fileID: 1348924672}
   DetectDistance: 10
-  AttkDistance: 1.2
+  AttkDistance: 0.95
   NPC_HP: 100
   NPC_AtkTime: 0
 --- !u!195 &1797454853
@@ -1423,7 +1428,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.2
+  m_StoppingDistance: 0.95
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1460,6 +1465,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!65 &1797454856
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797454850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.1, z: 0.6}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1820880965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1684,6 @@ GameObject:
   - component: {fileID: 2047109053}
   - component: {fileID: 2047109052}
   - component: {fileID: 2047109054}
-  - component: {fileID: 2047109056}
   - component: {fileID: 2047109057}
   - component: {fileID: 2047109058}
   - component: {fileID: 2047109055}
@@ -1740,25 +1757,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!65 &2047109056
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047109051}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!114 &2047109057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,8 +1784,9 @@ MonoBehaviour:
   knife: {fileID: 1665357817}
   gravity: 9.8
   PlayHp: 100
-  PlayHpIMG: {fileID: 0}
+  PlayHpIMG: {fileID: 1448664161}
   PlayerAtkTime: 0
+  op: 0
 --- !u!65 &2047109058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1793,7 +1798,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.17, z: 0.1}
+  m_Size: {x: 0.5, y: 0.17, z: 0.1}
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &2117727783 stripped
 GameObject:
