@@ -22,15 +22,23 @@ public class playerC : MonoBehaviour
     public float op;
     static public bool Player_isAttk = false;
 
+    public GameObject PlayerHpBar;
+    public GameObject cameraObj;
+
     private Vector3 moveDirection;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();      
+        anim = GetComponent<Animator>();
+        PlayerHpBar = GameObject.Find("PlayerCanvas");
+        cameraObj = GameObject.Find("Main Camera"); 
     }
     private void Update()
     {
+        PlayerHpBar.transform.LookAt(cameraObj.transform.position);
         PlayHpIMG.fillAmount =PlayHp* 0.01f;
+       
+
 
         if (controller.isGrounded)
         {
@@ -92,9 +100,9 @@ public class playerC : MonoBehaviour
         else
             anim.SetBool("Player_attack", false);
         if (PlayHp <= 0)
-        { 
-        
-        
+        {
+            anim.SetBool("playerdying",true);
+            
         }
     }
     private void OnCollisionEnter(Collision collision)
