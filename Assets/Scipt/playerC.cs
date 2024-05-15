@@ -16,7 +16,7 @@ public class playerC : MonoBehaviour
     public Animator anim;
     public GameObject knife;
     public float gravity = 9.8f;
-    public float PlayHp = 100f;
+    static public float PlayHp = 100f;
     public Image PlayHpIMG;
     public float PlayerAtkTime;
     public float op;
@@ -151,7 +151,7 @@ public class playerC : MonoBehaviour
         }
         if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
         {
-            PlayHp -= 10f;
+            PlayHp -= 20f;
             print(PlayHp);
         }
      

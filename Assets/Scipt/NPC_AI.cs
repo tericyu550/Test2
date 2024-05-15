@@ -20,7 +20,7 @@ public class NPC_AI : MonoBehaviour
     public Transform CameraObj;
     void Start()
     {
-
+        TargetObj = GameObject.Find("player");
         npcNavi = GetComponent<NavMeshAgent>();
         NPC01_ani = GetComponent<Animator>();
         NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
@@ -31,10 +31,13 @@ public class NPC_AI : MonoBehaviour
     {
         NPC_HpIMG.fillAmount = NPC_HP * 0.01f;
         float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-        NPC_HpBar.LookAt(CameraObj.position);
+        if (GameObject.Find("NPC_Canvas") != null)
+            NPC_HpBar.LookAt(CameraObj.position);
+        else
+            NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
         float NPC_Speed = npcNavi.velocity.magnitude;   // 取得NPC的速度. 
        
-        if (dist < DetectDistance && NPC_HP>0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
+        if (dist < DetectDistance && NPC_HP> 0 && playerC.PlayHp > 0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
         {
             npcNavi.destination = TargetObj.transform.position;
             NPC01_ani.SetFloat("Blend", 1);
@@ -44,7 +47,7 @@ public class NPC_AI : MonoBehaviour
             npcNavi.destination = transform.position;
             NPC01_ani.SetFloat("Blend", 0);
         }
-        if (dist < AttkDistance)
+        if (dist < AttkDistance && playerC.PlayHp>0)
         {
             NPC01_ani.SetBool("NPC_ATK", true);
         }
