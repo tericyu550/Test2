@@ -58,7 +58,7 @@ public class NPC_AI : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC01_ani.SetBool("NPC_Die", true);
-            Destroy(gameObject, 5);
+            Destroy(this.gameObject, 5);
         }
         NPC_AtkTime = NPC01_ani.GetFloat("NPC_AtkTtime");
         NPC_isAtk = NPC01_ani.GetFloat("NPC_AtkTtime") > 0.006 ? true : false;

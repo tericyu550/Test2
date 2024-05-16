@@ -11,17 +11,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kachujin_MAT
-    second: {fileID: 2100000, guid: b6374b2c907959a4fa82f8ddc5c4ed7b, type: 2}
+    second: {fileID: 2100000, guid: 07a6d4e7252c26d4699b21c4ebbe2c23, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kachujin_MAT_
-    second: {fileID: 2100000, guid: 3e6cd3644d7f06a4eabbf3a686912402, type: 2}
+    second: {fileID: 2100000, guid: fff229e822db35e42ae201b04d3ae689, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

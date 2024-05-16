@@ -6,7 +6,17 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: NPC_walking
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kachujin_MAT
+    second: {fileID: 2100000, guid: 07a6d4e7252c26d4699b21c4ebbe2c23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kachujin_MAT_
+    second: {fileID: 2100000, guid: fff229e822db35e42ae201b04d3ae689, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

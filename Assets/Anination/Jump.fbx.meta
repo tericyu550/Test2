@@ -11,12 +11,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Beta_HighLimbsGeoSG3
-    second: {fileID: 2100000, guid: 9fa232558ba897e45946bd16d3b034b7, type: 2}
+    second: {fileID: 2100000, guid: 0f1c6e42f4ada484e959c37ad5e8c690, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Beta_Joints_MAT1
-    second: {fileID: 2100000, guid: bff0c20fa0cf55745b7ea8fafa51937d, type: 2}
+    second: {fileID: 2100000, guid: d3b2f66a84567934ba65f196e089be72, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
