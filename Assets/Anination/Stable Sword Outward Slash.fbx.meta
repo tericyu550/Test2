@@ -120,7 +120,7 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.62758726
+            time: 0.544259
             value: 0.0075683594
             inSlope: 0
             outSlope: 0
@@ -129,7 +129,7 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.63329524
+            time: 0.549967
             value: 0.0000013018434
             inSlope: 0
             outSlope: 0
