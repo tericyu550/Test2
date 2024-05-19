@@ -29,15 +29,29 @@ public class NPC_AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NPC_HpIMG.fillAmount = NPC_HP * 0.01f;
-        float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        NPC_HpIMG.fillAmount = NPC_HP * 0.01f;     
         if (GameObject.Find("NPC_Canvas") != null)
             NPC_HpBar.LookAt(CameraObj.position);
         else
             NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
-        float NPC_Speed = npcNavi.velocity.magnitude;   // 取得NPC的速度. 
-       
-        if (dist < DetectDistance && NPC_HP> 0 && playerC.PlayHp > 0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
+
+        //float NPC_Speed = npcNavi.velocity.magnitude;   // 取得NPC的速度. 
+        NPCJudge();
+        
+    }
+
+
+    private void OnTriggerEnter(Collider Hit)
+    {
+        if (Hit.gameObject.tag == "weapon" && NPC_HP > 0&& playerC.Player_isAttk==true)
+        {
+            NPC_HP -= 50;
+        }
+    }
+    void NPCJudge()
+    {
+        float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        if (dist < DetectDistance && NPC_HP > 0 && playerC.PlayHp > 0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
         {
             npcNavi.destination = TargetObj.transform.position;
             NPC01_ani.SetFloat("Blend", 1);
@@ -47,7 +61,7 @@ public class NPC_AI : MonoBehaviour
             npcNavi.destination = transform.position;
             NPC01_ani.SetFloat("Blend", 0);
         }
-        if (dist < AttkDistance && playerC.PlayHp>0)
+        if (dist < AttkDistance && playerC.PlayHp > 0)
         {
             NPC01_ani.SetBool("NPC_ATK", true);
         }
@@ -62,29 +76,5 @@ public class NPC_AI : MonoBehaviour
         }
         NPC_AtkTime = NPC01_ani.GetFloat("NPC_AtkTtime");
         NPC_isAtk = NPC01_ani.GetFloat("NPC_AtkTtime") > 0.006 ? true : false;
-        
-    }
-
-
-    private void OnTriggerEnter(Collider Hit)
-    {
-        if (Hit.gameObject.tag == "weapon" && NPC_HP > 0&& playerC.Player_isAttk==true)
-        {
-            NPC_HP -= 50;
-        }
-    }
-
-    //NavMeshAgent NPCNav;
-    //public GameObject TargetObj;
-    //void Start()
-    //{
-    //    NPCNav = GetComponent<NavMeshAgent>();
-
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    NPCNav.destination = TargetObj.transform.position;
-    //}
+    }  
 }

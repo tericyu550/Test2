@@ -5,25 +5,30 @@ using UnityEngine.UI;
 public class playerC : MonoBehaviour
 {
     public CharacterController controller;
+
     public float moveSpeed = 5f;
     public float turnSpeed = 200f;
     public float jumpForce = 5f;
     public float mtfk;
- //  private bool isJumping = false;
-  //  private bool groundedPlayer = false;
-    private Rigidbody rb;
     private float moveInput;
-    public Animator anim;
-    public GameObject knife;
     public float gravity = 9.8f;
     static public float PlayHp = 100f;
-    public Image PlayHpIMG;
     public float PlayerAtkTime;
-    public float op;
+
     static public bool Player_isAttk = false;
 
+    public Animator anim;
+    
+    public Image PlayHpIMG;
+ 
+    private Rigidbody rb;
+
+    public GameObject knife;
     public GameObject PlayerHpBar;
     public GameObject cameraObj;
+    public GameObject Bullet;
+
+    public Transform FirePos;
 
     private Vector3 moveDirection;
     private void Start()
@@ -31,34 +36,18 @@ public class playerC : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         PlayerHpBar = GameObject.Find("PlayerCanvas");
-        cameraObj = GameObject.Find("Main Camera"); 
+        cameraObj = GameObject.Find("Main Camera");
+       // Bullet = GameObject.Find("bullet");
+        FirePos = GameObject.Find("center").transform;
     }
     private void Update()
     {
         PlayerHpBar.transform.LookAt(cameraObj.transform.position);
         PlayHpIMG.fillAmount =PlayHp* 0.01f;
-       
-
 
         if (controller.isGrounded)
         {
-            float tunX = Input.GetAxis("Horizontal");
-            float moveZ = Input.GetAxis("Vertical");
-            moveSpeed = Input.GetKey(KeyCode.LeftShift) ? 6 : 2; //當按下左Shift鍵時，verticalInput的值為3，否則為1  
-            //Debug.Log(moveSpeed);          
-            anim.SetFloat("Blend", Mathf.Abs(moveZ * moveSpeed));
-           // PlayHpIMG.fillAmount = PlayHp * 0.1f;
-            // 計算移動方向
-           // moveDirection = new Vector3(0f, 0f, moveZ);
-            moveDirection = transform.TransformDirection(new Vector3(0f, 0f, moveZ)* moveSpeed);
-            //moveDirection *= moveSpeed;
-            //處理角色轉向
-            transform.Rotate(Vector3.up * tunX * turnSpeed * Time.deltaTime); // 
-                                                                              // Move forward and backward
-            moveInput = Input.GetAxis("Vertical");
-            // 處理重力
-
-
+            PlayerMove();
             //if (Input.GetKey(KeyCode.LeftShift)&& Input.GetAxisRaw("Vertical")!=0 )
             //{
             //    transform.Translate(Vector3.forward * moveInput * moveSpeed * Time.deltaTime * 2f);
@@ -69,80 +58,62 @@ public class playerC : MonoBehaviour
             //    transform.Translate(Vector3.forward * moveInput * moveSpeed * Time.deltaTime);
             //    anim.SetFloat("Blend", moveInput);
             //}
-
-            //// Turn left and right
-            //float turnInput = Input.GetAxis("Horizontal");
-
             // transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
-
-
-            // Jump
-            if (Input.GetButton("Jump"))
-            {
-                // rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                anim.SetTrigger("player_jump");
-                moveDirection.y = jumpForce;
-
-                // anim.SetTrigger("player_jp");
-            }
-
-           
         }
+        moveDirection.y -= gravity * Time.deltaTime;          
+        controller.Move(moveDirection * Time.deltaTime);// 移動角色
+
+        PlayerAttk();
+
+        if (PlayHp <= 0)
+        {
+            anim.SetBool("playerdying",true);          
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+    }
+   
+    void PlayerMove()
+    {
+        float tunX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? 6 : 2; //當按下左Shift鍵時，verticalInput的值為3，否則為1                                                            //
+        anim.SetFloat("Blend", Mathf.Abs(moveZ * moveSpeed));
+        // moveDirection = new Vector3(0f, 0f, moveZ);
+        moveDirection = transform.TransformDirection(new Vector3(0f, 0f, moveZ) * moveSpeed);
+        //moveDirection *= moveSpeed;
+        
+        transform.Rotate(Vector3.up * tunX * turnSpeed * Time.deltaTime); //處理角色轉向
+        moveInput = Input.GetAxis("Vertical");// 處理重力
+        if (Input.GetButton("Jump"))
+        {
+            // rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("player_jump");
+            moveDirection.y = jumpForce;     
+        }
+    }
+    void PlayerAttk()
+    {
         PlayerAtkTime = anim.GetFloat("playerAttacktime");
         Player_isAttk = PlayerAtkTime > 0.02f ? true : false;
-        moveDirection.y -= gravity * Time.deltaTime;
-            // 移動角色
-        controller.Move(moveDirection * Time.deltaTime);
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Instantiate(Bullet, FirePos.position, FirePos.rotation);
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             anim.SetBool("Player_attack", true);
         }
         else
             anim.SetBool("Player_attack", false);
-        if (PlayHp <= 0)
-        {
-            anim.SetBool("playerdying",true);
-            
-        }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Reset jump state when touching the ground
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-        //    isJumping = false;
-        //}
-    }
-    void playerAttack()
-    {
-       
-        StartCoroutine("attack");
 
-    }
-    IEnumerator attack()
-    {
-        
-        yield return new WaitForSeconds(2f);
-    }
-    
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     print("OnTriggerEnter");
-    //     if(other.CompareTag("COIN"))
-    //     {
-    //         Destroy(other.gameObject);
-    //     }
-    // }
     //取武器碰撞偵測的function 
     private void OnTriggerEnter(Collider other)
     {
-       // print("OnTriggerEnter"); //當物件進入觸發區時，印出OnTriggerEnter
-        // if (other.CompareTag("weapon"))
-        // {
-        //    // playerPickWeapon = true;
-        //     sword.SetActive(true); 
-        //     Destroy(other.gameObject); // 刪除進入觸發區的物件
-        // }
         if(other.CompareTag("COIN"))
         {
             // playerPickWeapon = true;
@@ -153,7 +124,6 @@ public class playerC : MonoBehaviour
         {
             PlayHp -= 20f;
             print(PlayHp);
-        }
-     
+        }   
     }
 }

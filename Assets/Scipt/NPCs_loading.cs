@@ -21,7 +21,5 @@ public class NPCs_loading : MonoBehaviour
             NPCs.transform.position = NPCs.transform.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
             NPC_num += 1;
         }
-       
-
     }
 }
