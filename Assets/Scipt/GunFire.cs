@@ -9,7 +9,7 @@ public class GunFire : MonoBehaviour
     void Start()
     {
         BullteRig = GetComponent<Rigidbody>();
-        BullteRig.AddForce(transform.forward * -300f);
+        BullteRig.AddForce(transform.forward * 1000f);
         Destroy(this.gameObject, 5);
     }
 

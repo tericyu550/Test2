@@ -7,7 +7,7 @@ public class playerC : MonoBehaviour
     public CharacterController controller;
 
     public float moveSpeed = 5f;
-    public float turnSpeed = 200f;
+    public float turnSpeed = 500f;
     public float jumpForce = 5f;
     public float mtfk;
     private float moveInput;
@@ -16,6 +16,7 @@ public class playerC : MonoBehaviour
     public float PlayerAtkTime;
 
     static public bool Player_isAttk = false;
+    public bool isFire;
 
     public Animator anim;
     
@@ -30,6 +31,8 @@ public class playerC : MonoBehaviour
 
     public Transform FirePos;
 
+    public VariableJoystick JoyS;
+
     private Vector3 moveDirection;
     private void Start()
     {
@@ -38,7 +41,8 @@ public class playerC : MonoBehaviour
         PlayerHpBar = GameObject.Find("PlayerCanvas");
         cameraObj = GameObject.Find("Main Camera");
        // Bullet = GameObject.Find("bullet");
-        FirePos = GameObject.Find("center").transform;
+        FirePos = GameObject.Find("Gun").transform;
+        JoyS = FindObjectOfType<VariableJoystick>();
     }
     private void Update()
     {
@@ -77,8 +81,8 @@ public class playerC : MonoBehaviour
    
     void PlayerMove()
     {
-        float tunX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        float tunX = Input.GetAxis("Horizontal")+JoyS.Horizontal;
+        float moveZ = Input.GetAxis("Vertical")+JoyS.Vertical;
         moveSpeed = Input.GetKey(KeyCode.LeftShift) ? 6 : 2; //當按下左Shift鍵時，verticalInput的值為3，否則為1                                                            //
         anim.SetFloat("Blend", Mathf.Abs(moveZ * moveSpeed));
         // moveDirection = new Vector3(0f, 0f, moveZ);
@@ -99,7 +103,7 @@ public class playerC : MonoBehaviour
         PlayerAtkTime = anim.GetFloat("playerAttacktime");
         Player_isAttk = PlayerAtkTime > 0.02f ? true : false;
         
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) || isFire==true)
         {
             Instantiate(Bullet, FirePos.position, FirePos.rotation);
         }
@@ -111,6 +115,14 @@ public class playerC : MonoBehaviour
             anim.SetBool("Player_attack", false);
     }
 
+    public void FireButtonDown()
+    {
+        isFire = true;
+    }
+    public void FireButtonUp()
+    {
+        isFire = false;
+    }
     //取武器碰撞偵測的function 
     private void OnTriggerEnter(Collider other)
     {
