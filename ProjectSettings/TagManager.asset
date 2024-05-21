@@ -8,6 +8,8 @@ TagManager:
   - COIN
   - weapon
   - Enemy
+  - bullet
+  - NPC
   layers:
   - Default
   - TransparentFX

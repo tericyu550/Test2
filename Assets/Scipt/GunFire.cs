@@ -9,7 +9,7 @@ public class GunFire : MonoBehaviour
     void Start()
     {
         BullteRig = GetComponent<Rigidbody>();
-        BullteRig.AddForce(transform.forward * 1000f);
+        BullteRig.AddForce(transform.forward * 2000f);
         Destroy(this.gameObject, 5);
     }
 
@@ -18,5 +18,18 @@ public class GunFire : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "NPC" )
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

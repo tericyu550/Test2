@@ -16,7 +16,8 @@ public class playerC : MonoBehaviour
     public float PlayerAtkTime;
 
     static public bool Player_isAttk = false;
-    public bool isFire;
+    public bool isFire = false;
+    public bool isSwordAttk = false;
 
     public Animator anim;
     
@@ -103,11 +104,12 @@ public class playerC : MonoBehaviour
         PlayerAtkTime = anim.GetFloat("playerAttacktime");
         Player_isAttk = PlayerAtkTime > 0.02f ? true : false;
         
-        if (Input.GetKeyDown(KeyCode.G) || isFire==true)
+        if (Input.GetKeyDown(KeyCode.G) || isFire == true)
         {
             Instantiate(Bullet, FirePos.position, FirePos.rotation);
+            isFire = false;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || isSwordAttk == true)
         {
             anim.SetBool("Player_attack", true);
         }
@@ -115,13 +117,21 @@ public class playerC : MonoBehaviour
             anim.SetBool("Player_attack", false);
     }
 
-    public void FireButtonDown()
+    public void FireButtonClick()
     {
         isFire = true;
     }
-    public void FireButtonUp()
+    //public void FireButtonUp()
+    //{
+    //    isFire = false;
+    //}
+    public void SwordButtonDown()
     {
-        isFire = false;
+        isSwordAttk = true;
+    }
+    public void SwordButtonUp()
+    {
+        isSwordAttk = false;
     }
     //取武器碰撞偵測的function 
     private void OnTriggerEnter(Collider other)

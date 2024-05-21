@@ -23,7 +23,8 @@ public class NPC_AI : MonoBehaviour
         TargetObj = GameObject.Find("player");
         npcNavi = GetComponent<NavMeshAgent>();
         NPC01_ani = GetComponent<Animator>();
-        NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
+        //  NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
+        NPC_HpBar = transform.Find("NPC_Canvas");
         CameraObj = GameObject.Find("Main Camera").transform;
     }
     // Update is called once per frame
@@ -47,7 +48,13 @@ public class NPC_AI : MonoBehaviour
         {
             NPC_HP -= 50;
         }
+
+        if (Hit.gameObject.tag== "bullet" && NPC_HP > 0 )
+        {
+            NPC_HP -= 100;
+        }
     }
+
     void NPCJudge()
     {
         float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
