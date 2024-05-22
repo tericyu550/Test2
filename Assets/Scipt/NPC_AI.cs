@@ -9,32 +9,39 @@ public class NPC_AI : MonoBehaviour
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
     public Animator NPC01_ani;
+
+     public Image NPC_HpIMG;
+
     public int DetectDistance = 10;
     public float AttkDistance = .9f;
-    public float NPC_HP = 100f;
-    public Image NPC_HpIMG;
-    static public bool NPC_isAtk = false;
+    public float NPC_MaxHP = 200f;
+    public float NPC_HP;
+    public float NPC_WalkSpeed = 2f;
+    public int NPC_AttkPower = 2;
     public float NPC_AtkTime;
+
+    static public bool NPC_isAtk = false;
 
     public Transform NPC_HpBar;
     public Transform CameraObj;
+
     void Start()
     {
         TargetObj = GameObject.Find("player");
         npcNavi = GetComponent<NavMeshAgent>();
         NPC01_ani = GetComponent<Animator>();
         //  NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
+        NPC_HP = NPC_MaxHP;
         NPC_HpBar = transform.Find("NPC_Canvas");
         CameraObj = GameObject.Find("Main Camera").transform;
+        npcNavi.speed = NPC_WalkSpeed;
     }
     // Update is called once per frame
     void Update()
     {
-        NPC_HpIMG.fillAmount = NPC_HP * 0.01f;     
-        if (GameObject.Find("NPC_Canvas") != null)
-            NPC_HpBar.LookAt(CameraObj.position);
-        else
-            NPC_HpBar = GameObject.Find("NPC_Canvas").transform;
+        NPC_HpIMG.fillAmount = NPC_HP *(1/ NPC_MaxHP);     
+        NPC_HpBar.LookAt(CameraObj.position);
+
 
         //float NPC_Speed = npcNavi.velocity.magnitude;   // 取得NPC的速度. 
         NPCJudge();

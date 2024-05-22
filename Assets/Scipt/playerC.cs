@@ -9,10 +9,13 @@ public class playerC : MonoBehaviour
     public float moveSpeed = 5f;
     public float turnSpeed = 500f;
     public float jumpForce = 5f;
-    public float mtfk;
-    private float moveInput;
+    public float moveInput;
     public float gravity = 9.8f;
     static public float PlayHp = 100f;
+    int NPC01_HurtNum = 1;
+    int NPC02_HurtNum = 10;
+
+
     public float PlayerAtkTime;
 
     static public bool Player_isAttk = false;
@@ -35,6 +38,7 @@ public class playerC : MonoBehaviour
     public VariableJoystick JoyS;
 
     private Vector3 moveDirection;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,6 +57,7 @@ public class playerC : MonoBehaviour
         if (controller.isGrounded)
         {
             PlayerMove();
+            //moveInput = Input.GetAxis("Vertical");
             //if (Input.GetKey(KeyCode.LeftShift)&& Input.GetAxisRaw("Vertical")!=0 )
             //{
             //    transform.Translate(Vector3.forward * moveInput * moveSpeed * Time.deltaTime * 2f);
@@ -65,7 +70,7 @@ public class playerC : MonoBehaviour
             //}
             // transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
         }
-        moveDirection.y -= gravity * Time.deltaTime;          
+        moveDirection.y -= gravity * Time.deltaTime;       // 處理重力   
         controller.Move(moveDirection * Time.deltaTime);// 移動角色
 
         PlayerAttk();
@@ -91,7 +96,7 @@ public class playerC : MonoBehaviour
         //moveDirection *= moveSpeed;
         
         transform.Rotate(Vector3.up * tunX * turnSpeed * Time.deltaTime); //處理角色轉向
-        moveInput = Input.GetAxis("Vertical");// 處理重力
+
         if (Input.GetButton("Jump"))
         {
             // rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -144,7 +149,7 @@ public class playerC : MonoBehaviour
         }
         if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
         {
-            PlayHp -= 20f;
+            PlayHp -= NPC01_HurtNum;
             print(PlayHp);
         }   
     }
