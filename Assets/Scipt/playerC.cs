@@ -12,8 +12,8 @@ public class playerC : MonoBehaviour
     public float moveInput;
     public float gravity = 9.8f;
     static public float PlayHp = 100f;
-    int NPC01_HurtNum = 1;
-    int NPC02_HurtNum = 10;
+  // int NPC01_HurtNum = 1;
+  //  int NPC02_HurtNum = 10;
 
 
     public float PlayerAtkTime;
@@ -147,10 +147,10 @@ public class playerC : MonoBehaviour
             knife.SetActive(true);
             Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
-        {
-            PlayHp -= NPC01_HurtNum;
-            print(PlayHp);
-        }   
+        //if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
+        //{
+        //    PlayHp -= NPC01_HurtNum;
+        //    print(PlayHp);
+        //}   
     }
 }

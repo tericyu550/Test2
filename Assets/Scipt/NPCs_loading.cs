@@ -9,7 +9,9 @@ public class NPCs_loading : MonoBehaviour
    private void Start()
     {
         NPC_spawner spawner = new NPC_spawner();
-        spawner.spawnNPC(100, 2, 1);
+        spawner.spawnNPC(100f, 2f, 10);
+        NPC_spawner spawner2 = new NPC_spawner();
+        spawner2.spawnNPC(200f, 4f, 20);
     }
 
     // Update is called once per frame
@@ -28,9 +30,12 @@ public class NPCs_loading : MonoBehaviour
 
 public class NPC_spawner : MonoBehaviour
 {
-    public void spawnNPC(float hp,float WalkSpeed,int NPC_AttkPower)
+    public void spawnNPC(float hp,float WalkSpeed,int AttkPower)
     {
         GameObject NPCs = Instantiate(Resources.Load("NPC1", typeof(GameObject))) as GameObject;
         NPC_AI NPC_Crtl = NPCs.GetComponent<NPC_AI>();
+        NPC_Crtl.NPC_MaxHP = hp;
+        NPC_Crtl.NPC_WalkSpeed = WalkSpeed;
+        NPC_Crtl.NPC_AttkPower = AttkPower;
     }
 }

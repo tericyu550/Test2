@@ -51,7 +51,7 @@ public class NPC_AI : MonoBehaviour
 
     private void OnTriggerEnter(Collider Hit)
     {
-        if (Hit.gameObject.tag == "weapon" && NPC_HP > 0&& playerC.Player_isAttk==true)
+        if (Hit.gameObject.tag == "weapon" && NPC_HP > 0&& playerC.Player_isAttk == true)
         {
             NPC_HP -= 50;
         }
@@ -59,6 +59,12 @@ public class NPC_AI : MonoBehaviour
         if (Hit.gameObject.tag== "bullet" && NPC_HP > 0 )
         {
             NPC_HP -= 100;
+        }
+
+        if (Hit.gameObject.tag == "Player" && playerC.PlayHp > 0 && NPC_isAtk == true )
+        {
+            playerC.PlayHp -= NPC_AttkPower;
+            print(playerC.PlayHp);
         }
     }
 
