@@ -15,7 +15,7 @@ public class NPC_AI : MonoBehaviour
     public int DetectDistance = 10;
     public float AttkDistance = .9f;
     public float NPC_MaxHP = 200f;
-    public float NPC_HP;
+    public float NPC_HP ;
     public float NPC_WalkSpeed = 2f;
     public int NPC_AttkPower = 2;
     public float NPC_AtkTime;

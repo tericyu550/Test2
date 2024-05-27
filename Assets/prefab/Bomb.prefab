@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2849122910594381218}
   - component: {fileID: 2849122910594381219}
   - component: {fileID: -2132175182035154907}
+  - component: {fileID: 4516915744087984047}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -210,3 +211,19 @@ MonoBehaviour:
   BombHunNum: 100
   BombObj: {fileID: 0}
   Magi: {fileID: 3014238719817288369, guid: d6b963f63175e30498a92d1e3b977815, type: 3}
+--- !u!54 &4516915744087984047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849122910594381217}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
