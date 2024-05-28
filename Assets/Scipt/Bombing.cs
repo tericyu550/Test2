@@ -14,9 +14,13 @@ public class Bombing : MonoBehaviour
 
     public GameObject BombObj;
     public GameObject Magi;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //BombRig = GetComponent<Rigidbody>();
+       // BombRig.AddForce(transform.forward * 500f);
         BombObj = GameObject.Find("BombTop");       
         BombCollider = GetComponent<SphereCollider>();
         Invoke("BombExposion", ExposionTime);
@@ -31,11 +35,10 @@ public class Bombing : MonoBehaviour
     {
         Instantiate(Magi,transform.position,transform.rotation);
         isExposion = true;
-        BombObj.GetComponent<MeshRenderer>().enabled = false;
-        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
         for (float r = 0.001f; r < ExposionRadius; r += 0.2f)
             BombCollider.radius = r;
-        Destroy(gameObject,5);
+        Destroy(gameObject,1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,8 +54,8 @@ public class Bombing : MonoBehaviour
         }
         if (other.gameObject.tag == "Player" && isExposion)
         {
-            playerC.PlayHp -= BombHunNum;
-           // isExposion = false;
+            playerC.PlayHp -= (BombHunNum/200);
+            //isExposion = false;
         }
     }
 }

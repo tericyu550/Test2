@@ -21,6 +21,7 @@ public class playerC : MonoBehaviour
     static public bool Player_isAttk = false;
     public bool isFire = false;
     public bool isSwordAttk = false;
+    public bool isBomb = false;
 
     public Animator anim;
     
@@ -32,6 +33,7 @@ public class playerC : MonoBehaviour
     public GameObject PlayerHpBar;
     public GameObject cameraObj;
     public GameObject Bullet;
+    public GameObject BombObj;
 
     public Transform FirePos;
 
@@ -120,6 +122,13 @@ public class playerC : MonoBehaviour
         }
         else
             anim.SetBool("Player_attack", false);
+
+        if (Input.GetKeyDown(KeyCode.Q) || isBomb)
+        {
+            Vector3 Bombpos = new Vector3(this.transform.position.x, BombObj.transform.position.y, transform.position.z);
+            Instantiate(BombObj, Bombpos, transform.rotation);
+            isBomb = false;
+        }
     }
 
     public void FireButtonClick()
@@ -137,6 +146,10 @@ public class playerC : MonoBehaviour
     public void SwordButtonUp()
     {
         isSwordAttk = false;
+    }
+    public void BombButtomClick()
+    {
+        isBomb = true;
     }
     //取武器碰撞偵測的function 
     private void OnTriggerEnter(Collider other)
