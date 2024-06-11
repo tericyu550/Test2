@@ -20,6 +20,16 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
     public List<Item> ItemList;
-   // public delegate void onln
+    public delegate void onInventoryChange();
+    public onInventoryChange onInventoryCallBack;
 
+    public void Add(Item NewItem)
+    {
+        ItemList.Add(NewItem);
+    }
+
+    public void Remove(Item OldItem)
+    {
+        ItemList.Remove(OldItem);
+    }
 }

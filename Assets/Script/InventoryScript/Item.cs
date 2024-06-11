@@ -8,7 +8,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public int ItemID;
-    public string ItmeName;
+    public string ItemName;
     public Sprite ItemImage;
 
     public virtual void UseItem()

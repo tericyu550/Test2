@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   ItemID: 2
-  ItmeName: Bullet
+  ItemName: Bullet
   ItemImage: {fileID: 2625661946598003752, guid: 1881a449bbca9ce4597f6eadea24c789, type: 3}

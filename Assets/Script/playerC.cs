@@ -22,6 +22,7 @@ public class playerC : MonoBehaviour
     public bool isFire = false;
     public bool isSwordAttk = false;
     public bool isBomb = false;
+    public bool isOpenInventory = false;
 
     public Animator anim;
     
@@ -34,6 +35,7 @@ public class playerC : MonoBehaviour
     public GameObject cameraObj;
     public GameObject Bullet;
     public GameObject BombObj;
+    public GameObject InventoryObj;
 
     public Transform FirePos;
 
@@ -47,7 +49,8 @@ public class playerC : MonoBehaviour
         anim = GetComponent<Animator>();
         PlayerHpBar = GameObject.Find("PlayerCanvas");
         cameraObj = GameObject.Find("Main Camera");
-       // Bullet = GameObject.Find("bullet");
+       // InventoryObj = GameObject.Find("Inventory");
+        // Bullet = GameObject.Find("bullet");
         FirePos = GameObject.Find("Gun").transform;
         JoyS = FindObjectOfType<VariableJoystick>();
     }
@@ -76,7 +79,7 @@ public class playerC : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);// 移動角色
 
         PlayerAttk();
-
+        InventoryOp();
         if (PlayHp <= 0)
         {
             anim.SetBool("playerdying",true);          
@@ -86,8 +89,17 @@ public class playerC : MonoBehaviour
     {
 
     }
-   
-    void PlayerMove()
+
+    public void InventoryOp()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            isOpenInventory = !isOpenInventory;
+            InventoryObj.SetActive(isOpenInventory);
+        }
+    }
+
+    public void PlayerMove()
     {
         float tunX = Input.GetAxis("Horizontal")+JoyS.Horizontal;
         float moveZ = Input.GetAxis("Vertical")+JoyS.Vertical;
@@ -106,7 +118,8 @@ public class playerC : MonoBehaviour
             moveDirection.y = jumpForce;     
         }
     }
-    void PlayerAttk()
+
+    public void PlayerAttk()
     {
         PlayerAtkTime = anim.GetFloat("playerAttacktime");
         Player_isAttk = PlayerAtkTime > 0.02f ? true : false;
