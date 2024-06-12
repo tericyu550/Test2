@@ -12,6 +12,8 @@ public class Item : ScriptableObject
     public Sprite ItemImage;
 
     public virtual void UseItem()
-    { }
+    { 
+        
+    }
 
 }

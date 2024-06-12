@@ -11,7 +11,7 @@ public class playerC : MonoBehaviour
     public float jumpForce = 5f;
     public float moveInput;
     public float gravity = 9.8f;
-    static public float PlayHp = 100f;
+    static public float PlayHp = 200f;
   // int NPC01_HurtNum = 1;
   //  int NPC02_HurtNum = 10;
 
@@ -53,6 +53,7 @@ public class playerC : MonoBehaviour
         // Bullet = GameObject.Find("bullet");
         FirePos = GameObject.Find("Gun").transform;
         JoyS = FindObjectOfType<VariableJoystick>();
+        InventoryObj.SetActive(isOpenInventory);
     }
     private void Update()
     {
@@ -117,6 +118,11 @@ public class playerC : MonoBehaviour
             anim.SetTrigger("player_jump");
             moveDirection.y = jumpForce;     
         }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            anim.SetTrigger("player_dodge");
+            controller.Move(transform.forward * 250f * Time.deltaTime * moveZ);
+        }
     }
 
     public void PlayerAttk()
@@ -164,6 +170,8 @@ public class playerC : MonoBehaviour
     {
         isBomb = true;
     }
+
+
     //取武器碰撞偵測的function 
     private void OnTriggerEnter(Collider other)
     {
@@ -173,10 +181,15 @@ public class playerC : MonoBehaviour
             knife.SetActive(true);
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "Magic")
+        {
+            PlayHp -= 3;
+        }
         //if (other.gameObject.tag == "Enemy" && NPC_AI.NPC_isAtk == true && PlayHp>0)
         //{
         //    PlayHp -= NPC01_HurtNum;
         //    print(PlayHp);
         //}   
     }
+
 }

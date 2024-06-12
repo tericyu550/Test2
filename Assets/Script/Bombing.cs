@@ -13,7 +13,7 @@ public class Bombing : MonoBehaviour
     SphereCollider BombCollider;
 
     public GameObject BombObj;
-    public GameObject Magi;
+    public GameObject explosion;
 
 
     // Start is called before the first frame update
@@ -33,12 +33,12 @@ public class Bombing : MonoBehaviour
     }
     private void BombExposion()
     {
-        Instantiate(Magi,transform.position,transform.rotation);
+        Instantiate(explosion,transform.position,transform.rotation);
         isExposion = true;
 
         for (float r = 0.001f; r < ExposionRadius; r += 0.2f)
             BombCollider.radius = r;
-        Destroy(gameObject,1);
+        Destroy(gameObject,0.2f);
     }
 
     private void OnTriggerEnter(Collider other)

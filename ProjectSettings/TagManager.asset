@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - bullet
   - NPC
+  - Magic
   layers:
   - Default
   - TransparentFX

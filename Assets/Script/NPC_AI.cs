@@ -78,6 +78,8 @@ public class NPC_AI : MonoBehaviour
         }
         else // 沒有的話, 則追蹤自己 或也可以改成回到NPC原先的位置. 
         {
+            //float r = Random.Range(-2f,2f);
+            // npcNavi.destination =new Vector3(transform.position.x+r, transform.position.y, transform.position.z+r);
             npcNavi.destination = transform.position;
             NPC01_ani.SetFloat("Blend", 0);
         }

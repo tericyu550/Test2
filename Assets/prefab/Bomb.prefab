@@ -211,7 +211,7 @@ MonoBehaviour:
   BombHunNum: 3000
   isExposion: 0
   BombObj: {fileID: 0}
-  Magi: {fileID: 3014238719817288369, guid: d6b963f63175e30498a92d1e3b977815, type: 3}
+  explosion: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
 --- !u!54 &4516915744087984047
 Rigidbody:
   m_ObjectHideFlags: 0

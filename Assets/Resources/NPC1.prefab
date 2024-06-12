@@ -2308,10 +2308,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetObj: {fileID: 0}
   NPC01_ani: {fileID: 4368527150307296061}
+  NPC_HpIMG: {fileID: 9144582509238163773}
   DetectDistance: 10
   AttkDistance: 0.8
+  NPC_MaxHP: 200
   NPC_HP: 100
-  NPC_HpIMG: {fileID: 9144582509238163773}
+  NPC_WalkSpeed: 2
+  NPC_AttkPower: 2
   NPC_AtkTime: 0
   NPC_HpBar: {fileID: 0}
   CameraObj: {fileID: 0}
